@@ -1,6 +1,7 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UpdateProductDto } from './dto/update.product.dto';
+import { CreateProductDto } from './dto/create.product.dto';
 
 @Injectable()
 export class ProductService {
@@ -19,6 +20,14 @@ async getAllProducts(){
     }
 })
 }
+
+async createProduct(dto: CreateProductDto){
+  return this.prisma.product.create({
+    data: { ...dto},
+  });
+
+}
+
 async updateProduct(id: string, dto: UpdateProductDto){
     const existingProduct = await this.prisma.user.findUnique({
         where: {
