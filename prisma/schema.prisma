@@ -18,7 +18,7 @@ model User {
   username   String     @unique
   email      String     @unique
   password   String
-  created_at DateTime
+  created_at DateTime   @default(now())
   money      Float
   is_active  Boolean
   role       Role       @default(USER)
