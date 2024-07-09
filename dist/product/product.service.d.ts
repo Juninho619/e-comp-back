@@ -9,7 +9,7 @@ export declare class ProductService {
         product_model: string;
         price: number;
         stock: number;
-        category_id: string;
+        category: string;
     }[]>;
     createProduct(dto: CreateProductDto): Promise<{
         id: string;
@@ -17,14 +17,14 @@ export declare class ProductService {
         product_model: string;
         price: number;
         stock: number;
-        category_id: string;
+        category: string;
     }>;
     updateProduct(id: string, dto: UpdateProductDto): Promise<{
         product_brand: string;
         product_model: string;
         price: number;
         stock: number;
-        category_id: string;
+        category: string;
     }>;
     deleteProduct(id: string): Promise<{
         id: string;
@@ -32,6 +32,6 @@ export declare class ProductService {
         product_model: string;
         price: number;
         stock: number;
-        category_id: string;
+        category: string;
     }>;
 }

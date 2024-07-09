@@ -31,8 +31,7 @@ model Product {
   product_model String
   price         Float
   stock         Int
-  category_id   String
-  category      Category   @relation(fields: [category_id], references: [id])
+  category      String
   purchases     Purchase[]
 }
 
@@ -44,12 +43,6 @@ model Purchase {
   quantity   Int
   user       User    @relation(fields: [user_id], references: [id])
   user_id    String
-}
-
-model Category {
-  id String @id @default(uuid())
-  name String
-  Product Product[]
 }
 
 enum Role {

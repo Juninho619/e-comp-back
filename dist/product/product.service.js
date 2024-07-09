@@ -25,7 +25,7 @@ let ProductService = class ProductService {
                 product_model: true,
                 price: true,
                 stock: true,
-                category_id: true
+                category: true
             }
         });
     }
@@ -51,7 +51,7 @@ let ProductService = class ProductService {
                 product_model: true,
                 price: true,
                 stock: true,
-                category_id: true
+                category: true
             },
         });
     }

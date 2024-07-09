@@ -16,7 +16,7 @@ async getAllProducts(){
         product_model: true,
         price: true,
         stock: true,
-        category_id: true
+        category: true
     }
 })
 }
@@ -47,7 +47,7 @@ async updateProduct(id: string, dto: UpdateProductDto){
             product_model: true,
             price: true,
             stock: true,
-            category_id: true
+            category: true
         },
       });
     }

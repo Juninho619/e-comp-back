@@ -3,5 +3,5 @@ export declare class CreateProductDto {
     product_model: string;
     price: GLfloat;
     stock: number;
-    category_id: string;
+    category: string;
 }
