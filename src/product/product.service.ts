@@ -29,15 +29,15 @@ async createProduct(dto: CreateProductDto){
 }
 
 async updateProduct(id: string, dto: UpdateProductDto){
-    const existingProduct = await this.prisma.user.findUnique({
+    const existingProduct = await this.prisma.product.findUnique({
         where: {
           id: id,
         },
       });
 
-      if (!existingProduct || !existingProduct.id) {
-        throw new ForbiddenException("u retard");
-      }
+       if (!existingProduct || !existingProduct.id) {
+         throw new ForbiddenException();
+       }
 
       return this.prisma.product.update({
         where: { id: id },
@@ -59,17 +59,17 @@ async updateProduct(id: string, dto: UpdateProductDto){
             },
           });
     
-          if (!existingProduct || !existingProduct.id) {
-            throw new ForbiddenException("u retard");
-          }
+          //  if (!existingProduct || !existingProduct.id) {
+          //    throw new ForbiddenException("u retard");
+          // }
 
           return this.prisma.product.delete({
             where: {
               id: id,
             },
           });
-        }
-      }
+  }
+}
 
 
 

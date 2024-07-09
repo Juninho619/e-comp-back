@@ -61,7 +61,7 @@ let PurchaseService = class PurchaseService {
         return this.prisma.purchase.delete({
             where: {
                 id: id,
-            },
+            }
         });
     }
 };
