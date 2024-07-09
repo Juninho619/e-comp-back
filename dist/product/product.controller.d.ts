@@ -18,6 +18,7 @@ export declare class ProductController {
         price: number;
         stock: number;
         category: string;
+        image: string;
     }>;
     updateProduct(dto: UpdateProductDto, id: string): Promise<{
         product_brand: string;
@@ -33,5 +34,6 @@ export declare class ProductController {
         price: number;
         stock: number;
         category: string;
+        image: string;
     }>;
 }

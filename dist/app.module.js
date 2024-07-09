@@ -14,6 +14,7 @@ const auth_module_1 = require("./auth/auth.module");
 const product_module_1 = require("./product/product.module");
 const purchase_module_1 = require("./purchase/purchase.module");
 const email_module_1 = require("./email/email.module");
+const image_module_1 = require("./image/image.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -26,7 +27,8 @@ exports.AppModule = AppModule = __decorate([
             auth_module_1.AuthModule,
             product_module_1.ProductModule,
             purchase_module_1.PurchaseModule,
-            email_module_1.EmailModule],
+            email_module_1.EmailModule,
+            image_module_1.ImageModule],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
