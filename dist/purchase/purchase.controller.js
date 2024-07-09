@@ -12,60 +12,59 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductController = void 0;
+exports.PurchaseController = void 0;
 const common_1 = require("@nestjs/common");
-const product_service_1 = require("./product.service");
-const update_product_dto_1 = require("./dto/update.product.dto");
-const create_product_dto_1 = require("./dto/create.product.dto");
-let ProductController = class ProductController {
-    constructor(productService) {
-        this.productService = productService;
+const purchase_service_1 = require("./purchase.service");
+const create_purchase_dto_1 = require("./dto/create.purchase.dto");
+let PurchaseController = class PurchaseController {
+    constructor(purchaseService) {
+        this.purchaseService = purchaseService;
     }
-    getAllProducts() {
-        return this.productService.getAllProducts();
+    getAllPurchases() {
+        return this.purchaseService.getAllPurchases();
     }
-    createProduct(dto) {
-        return this.productService.createProduct(dto);
+    getPurchaseByUser(user) {
+        return this.purchaseService.getPurchaseByUser(user);
     }
-    updateProduct(dto, id) {
-        return this.productService.updateProduct(id, dto);
+    createPurchase(dto, user) {
+        return this.purchaseService.createPurchase(dto, user);
     }
-    deleteProduct(id) {
-        return this.productService.deleteProduct(id);
+    deletePurchase(id, user) {
+        return this.purchaseService.deletePurchase(id, user);
     }
 };
-exports.ProductController = ProductController;
+exports.PurchaseController = PurchaseController;
 __decorate([
     (0, common_1.Get)('/all'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], ProductController.prototype, "getAllProducts", null);
+], PurchaseController.prototype, "getAllPurchases", null);
 __decorate([
-    (0, common_1.Post)('/create'),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.Get)('/purchasebyuser'),
+    __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_product_dto_1.CreateProductDto]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
-], ProductController.prototype, "createProduct", null);
+], PurchaseController.prototype, "getPurchaseByUser", null);
 __decorate([
-    (0, common_1.Patch)('/update/:id'),
+    (0, common_1.Post)('/buy'),
     __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [update_product_dto_1.UpdateProductDto, String]),
+    __metadata("design:paramtypes", [create_purchase_dto_1.CreatePurchaseDto, Object]),
     __metadata("design:returntype", void 0)
-], ProductController.prototype, "updateProduct", null);
+], PurchaseController.prototype, "createPurchase", null);
 __decorate([
     (0, common_1.HttpCode)(204),
     (0, common_1.Delete)('/delete/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
-], ProductController.prototype, "deleteProduct", null);
-exports.ProductController = ProductController = __decorate([
-    (0, common_1.Controller)('product'),
-    __metadata("design:paramtypes", [product_service_1.ProductService])
-], ProductController);
-//# sourceMappingURL=product.controller.js.map
+], PurchaseController.prototype, "deletePurchase", null);
+exports.PurchaseController = PurchaseController = __decorate([
+    (0, common_1.Controller)('purchase'),
+    __metadata("design:paramtypes", [purchase_service_1.PurchaseService])
+], PurchaseController);
+//# sourceMappingURL=purchase.controller.js.map

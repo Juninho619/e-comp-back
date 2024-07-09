@@ -29,6 +29,11 @@ let ProductService = class ProductService {
             }
         });
     }
+    async createProduct(dto) {
+        return this.prisma.product.create({
+            data: { ...dto },
+        });
+    }
     async updateProduct(id, dto) {
         const existingProduct = await this.prisma.user.findUnique({
             where: {

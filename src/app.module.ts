@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './product/product.module';
+import { PurchaseModule } from './purchase/purchase.module';
 
 @Module({
   imports: [ ConfigModule.forRoot({
@@ -16,6 +17,8 @@ import { ProductModule } from './product/product.module';
  
    AuthModule,
  
-   ProductModule],
+   ProductModule,
+ 
+   PurchaseModule],
 })
 export class AppModule {}
