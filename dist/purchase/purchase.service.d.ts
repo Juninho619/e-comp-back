@@ -4,7 +4,7 @@ import { CreatePurchaseDto } from './dto/create.purchase.dto';
 export declare class PurchaseService {
     private prisma;
     constructor(prisma: PrismaService);
-    getAllPurchases(): Promise<{
+    getAllPurchase(): Promise<{
         product_id: string;
         amount: number;
         quantity: number;

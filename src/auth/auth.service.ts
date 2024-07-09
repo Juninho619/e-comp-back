@@ -5,6 +5,7 @@ import * as argon from 'argon2';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { SignupDto } from './dto/auth.signup.dto';
 import { SigninDto } from './dto/auth.signin.dto';
+import { EmailService } from 'src/email/email.service';
 
 @Injectable()
 export class AuthService {
@@ -12,6 +13,7 @@ export class AuthService {
         private prisma: PrismaService,
         private jwt: JwtService,
         private config: ConfigService,
+        private emailService: EmailService,
       ) {}
       async signup(dto: SignupDto) {
         const exisingUser = await this.prisma.user.findUnique({
@@ -34,6 +36,9 @@ export class AuthService {
             money: 2000
           },
         });
+
+        const activationToken = await argon.hash(`${new Date()} + ${user.email}`);
+        await this.emailService.sendUserConfirmation(user, activationToken);
         return this.signToken(user.id);
     }
 

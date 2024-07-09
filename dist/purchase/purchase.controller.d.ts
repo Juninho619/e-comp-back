@@ -4,7 +4,7 @@ import { CreatePurchaseDto } from './dto/create.purchase.dto';
 export declare class PurchaseController {
     private readonly purchaseService;
     constructor(purchaseService: PurchaseService);
-    getAllPurchases(): Promise<{
+    getAllPurchase(): Promise<{
         product_id: string;
         amount: number;
         quantity: number;

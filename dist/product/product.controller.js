@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const product_service_1 = require("./product.service");
 const update_product_dto_1 = require("./dto/update.product.dto");
 const create_product_dto_1 = require("./dto/create.product.dto");
+const guards_1 = require("../auth/guards");
 let ProductController = class ProductController {
     constructor(productService) {
         this.productService = productService;
@@ -42,6 +43,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ProductController.prototype, "getAllProducts", null);
 __decorate([
+    (0, common_1.UseGuards)(guards_1.JwtGuard),
     (0, common_1.Post)('/create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -49,6 +51,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ProductController.prototype, "createProduct", null);
 __decorate([
+    (0, common_1.UseGuards)(guards_1.JwtGuard),
     (0, common_1.Patch)('/update/:id'),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Param)('id')),
@@ -57,6 +60,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ProductController.prototype, "updateProduct", null);
 __decorate([
+    (0, common_1.UseGuards)(guards_1.JwtGuard),
     (0, common_1.HttpCode)(204),
     (0, common_1.Delete)('/delete/:id'),
     __param(0, (0, common_1.Param)('id')),

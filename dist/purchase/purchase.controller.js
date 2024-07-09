@@ -16,12 +16,13 @@ exports.PurchaseController = void 0;
 const common_1 = require("@nestjs/common");
 const purchase_service_1 = require("./purchase.service");
 const create_purchase_dto_1 = require("./dto/create.purchase.dto");
+const guards_1 = require("../auth/guards");
 let PurchaseController = class PurchaseController {
     constructor(purchaseService) {
         this.purchaseService = purchaseService;
     }
-    getAllPurchases() {
-        return this.purchaseService.getAllPurchases();
+    getAllPurchase() {
+        return this.purchaseService.getAllPurchase();
     }
     getPurchaseByUser(user) {
         return this.purchaseService.getPurchaseByUser(user);
@@ -39,7 +40,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], PurchaseController.prototype, "getAllPurchases", null);
+], PurchaseController.prototype, "getAllPurchase", null);
 __decorate([
     (0, common_1.Get)('/purchasebyuser'),
     __param(0, (0, common_1.Param)()),
@@ -64,6 +65,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], PurchaseController.prototype, "deletePurchase", null);
 exports.PurchaseController = PurchaseController = __decorate([
+    (0, common_1.UseGuards)(guards_1.JwtGuard),
     (0, common_1.Controller)('purchase'),
     __metadata("design:paramtypes", [purchase_service_1.PurchaseService])
 ], PurchaseController);

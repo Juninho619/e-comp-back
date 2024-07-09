@@ -16,7 +16,7 @@ let PurchaseService = class PurchaseService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async getAllPurchases() {
+    async getAllPurchase() {
         return this.prisma.purchase.findMany({
             orderBy: {
                 amount: 'desc'
@@ -56,7 +56,7 @@ let PurchaseService = class PurchaseService {
         if (!existingPurchase ||
             !existingPurchase.id ||
             existingPurchase.user_id !== user.id) {
-            throw new common_1.BadRequestException('No');
+            throw new common_1.BadRequestException('Nope');
         }
         return this.prisma.purchase.delete({
             where: {

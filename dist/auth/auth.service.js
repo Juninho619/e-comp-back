@@ -15,11 +15,13 @@ const config_1 = require("@nestjs/config");
 const jwt_1 = require("@nestjs/jwt");
 const argon = require("argon2");
 const prisma_service_1 = require("../prisma/prisma.service");
+const email_service_1 = require("../email/email.service");
 let AuthService = class AuthService {
-    constructor(prisma, jwt, config) {
+    constructor(prisma, jwt, config, emailService) {
         this.prisma = prisma;
         this.jwt = jwt;
         this.config = config;
+        this.emailService = emailService;
     }
     async signup(dto) {
         const exisingUser = await this.prisma.user.findUnique({
@@ -40,6 +42,8 @@ let AuthService = class AuthService {
                 money: 2000
             },
         });
+        const activationToken = await argon.hash(`${new Date()} + ${user.email}`);
+        await this.emailService.sendUserConfirmation(user, activationToken);
         return this.signToken(user.id);
     }
     async signin(dto) {
@@ -76,6 +80,7 @@ exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService,
         jwt_1.JwtService,
-        config_1.ConfigService])
+        config_1.ConfigService,
+        email_service_1.EmailService])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map

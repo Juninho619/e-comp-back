@@ -13,6 +13,7 @@ const config_1 = require("@nestjs/config");
 const auth_module_1 = require("./auth/auth.module");
 const product_module_1 = require("./product/product.module");
 const purchase_module_1 = require("./purchase/purchase.module");
+const email_module_1 = require("./email/email.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -24,7 +25,8 @@ exports.AppModule = AppModule = __decorate([
             prisma_module_1.PrismaModule,
             auth_module_1.AuthModule,
             product_module_1.ProductModule,
-            purchase_module_1.PurchaseModule],
+            purchase_module_1.PurchaseModule,
+            email_module_1.EmailModule],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
