@@ -18,7 +18,6 @@ export declare class ProductService {
         price: number;
         stock: number;
         category: string;
-        image: string;
     }>;
     updateProduct(id: string, dto: UpdateProductDto): Promise<{
         product_brand: string;
@@ -34,6 +33,5 @@ export declare class ProductService {
         price: number;
         stock: number;
         category: string;
-        image: string;
     }>;
 }
