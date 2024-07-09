@@ -7,7 +7,7 @@ import { CreatePurchaseDto } from './dto/create.purchase.dto';
 export class PurchaseService {
     constructor(private prisma: PrismaService) {}
 
-    async getAllPurchases(){
+    async getAllPurchase(){
         return this.prisma.purchase.findMany({
             orderBy:{
                 amount: 'desc'
@@ -53,7 +53,7 @@ export class PurchaseService {
             !existingPurchase.id ||
             existingPurchase.user_id !== user.id
           ) {
-            throw new BadRequestException('No');
+            throw new BadRequestException('Nope');
           }
       
           return this.prisma.purchase.delete({

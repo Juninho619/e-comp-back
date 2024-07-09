@@ -1,15 +1,17 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, UseGuards } from '@nestjs/common';
 import { PurchaseService } from './purchase.service';
 import { User } from '@prisma/client';
 import { CreatePurchaseDto } from './dto/create.purchase.dto';
+import { JwtGuard } from 'src/auth/guards';
 
+@UseGuards(JwtGuard)
 @Controller('purchase')
 export class PurchaseController {
   constructor(private readonly purchaseService: PurchaseService) {}
 
   @Get('/all')
-  getAllPurchases(){
-    return this.purchaseService.getAllPurchases()
+  getAllPurchase(){
+    return this.purchaseService.getAllPurchase()
   }
 
   @Get('/purchasebyuser')
