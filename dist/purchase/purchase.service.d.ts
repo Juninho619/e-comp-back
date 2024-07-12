@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { Product, User } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePurchaseDto } from './dto/create.purchase.dto';
 export declare class PurchaseService {
@@ -16,7 +16,7 @@ export declare class PurchaseService {
         quantity: number;
         user_id: string;
     }[]>;
-    createPurchase(dto: CreatePurchaseDto, user: User): Promise<{
+    createPurchase(dto: CreatePurchaseDto, user: User, product: Product): Promise<{
         id: string;
         product_id: string;
         amount: number;

@@ -2,6 +2,8 @@ import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UpdateProductDto } from './dto/update.product.dto';
 import { CreateProductDto } from './dto/create.product.dto';
+import { BuyProductDto } from './dto/buy.product.dto';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class ProductService {
@@ -25,6 +27,47 @@ async createProduct(dto: CreateProductDto){
   return this.prisma.product.create({
     data: { ...dto},
   });
+
+}
+
+async buyProduct(dto: BuyProductDto, user: User){
+  const merch = await this.prisma.product.findFirst({
+    where:{
+      id: dto.productId,
+    }
+  })
+
+  const buyer = await this.prisma.user.findFirst({
+    where: {
+      id: user.id,
+    },
+  });
+
+  // user enough money
+  if(user.money < merch.price){
+    throw new ForbiddenException('User cannot buy this product')
+  }
+
+  await this.prisma.purchase.create({
+    data:{
+      quantity: dto.quantity,
+      amount: dto.quantity,
+      user_id: dto.userId,
+      product_id: dto.productId
+    },
+  })
+
+  // reduce stock
+
+  // reduce user wallet
+  await this.prisma.user.update({
+    where:{id: user.id},
+    data:{
+      money: - 43
+    },
+  })
+
+  // return purchase overview
 
 }
 
