@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, UseGuards } from '@nestjs/common';
 import { PurchaseService } from './purchase.service';
-import { User } from '@prisma/client';
+import { Product, User } from '@prisma/client';
 import { CreatePurchaseDto } from './dto/create.purchase.dto';
 import { JwtGuard } from 'src/auth/guards';
 
@@ -20,8 +20,8 @@ export class PurchaseController {
   }
 
   @Post('/buy')
-  createPurchase(@Body() dto: CreatePurchaseDto, @Param()user: User){
-    return this.purchaseService.createPurchase(dto, user)
+  createPurchase(@Body() dto: CreatePurchaseDto, product: Product, user: User){
+    return this.purchaseService.createPurchase(dto, user, product)
   }
 
   @HttpCode(204)

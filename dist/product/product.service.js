@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
+const common_2 = require("@nestjs/common");
 let ProductService = class ProductService {
     constructor(prisma) {
         this.prisma = prisma;
@@ -34,6 +35,41 @@ let ProductService = class ProductService {
             data: { ...dto },
         });
     }
+    async buyProduct(dto, user) {
+        const merch = await this.prisma.product.findFirst({
+            where: {
+                id: dto.productId,
+            }
+        });
+        const buyer = await this.prisma.user.findFirst({
+            where: {
+                id: user.id,
+            },
+        });
+        if (buyer.money < merch.price) {
+            throw new common_2.ForbiddenException('User cannot buy this product');
+        }
+        await this.prisma.purchase.create({
+            data: {
+                quantity: dto.quantity,
+                amount: dto.quantity,
+                user_id: dto.userId,
+                product_id: dto.productId
+            },
+        });
+        await this.prisma.product.update({
+            where: {
+                id: dto.productId,
+            },
+            data: {}
+        });
+        await this.prisma.user.update({
+            where: { id: user.id },
+            data: {
+                money: -1
+            },
+        });
+    }
     async updateProduct(id, dto) {
         const existingProduct = await this.prisma.product.findUnique({
             where: {
@@ -41,7 +77,7 @@ let ProductService = class ProductService {
             },
         });
         if (!existingProduct || !existingProduct.id) {
-            throw new common_1.ForbiddenException();
+            throw new common_2.ForbiddenException();
         }
         return this.prisma.product.update({
             where: { id: id },

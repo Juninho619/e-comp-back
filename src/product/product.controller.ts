@@ -20,6 +20,12 @@ export class ProductController {
   }
 
   @UseGuards(JwtGuard)
+  @Post('/buy')
+  buyProduct(@Body() dto: CreateProductDto){
+    return this.productService.createProduct(dto)
+  }
+
+  @UseGuards(JwtGuard)
   @Patch('/update/:id')
   updateProduct(@Body() dto: UpdateProductDto, @Param('id') id: string) {
     return this.productService.updateProduct(id, dto);

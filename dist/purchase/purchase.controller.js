@@ -27,8 +27,8 @@ let PurchaseController = class PurchaseController {
     getPurchaseByUser(user) {
         return this.purchaseService.getPurchaseByUser(user);
     }
-    createPurchase(dto, user) {
-        return this.purchaseService.createPurchase(dto, user);
+    createPurchase(dto, product, user) {
+        return this.purchaseService.createPurchase(dto, user, product);
     }
     deletePurchase(id, user) {
         return this.purchaseService.deletePurchase(id, user);
@@ -51,9 +51,8 @@ __decorate([
 __decorate([
     (0, common_1.Post)('/buy'),
     __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Param)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_purchase_dto_1.CreatePurchaseDto, Object]),
+    __metadata("design:paramtypes", [create_purchase_dto_1.CreatePurchaseDto, Object, Object]),
     __metadata("design:returntype", void 0)
 ], PurchaseController.prototype, "createPurchase", null);
 __decorate([

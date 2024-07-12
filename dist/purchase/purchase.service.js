@@ -42,9 +42,14 @@ let PurchaseService = class PurchaseService {
             }
         });
     }
-    async createPurchase(dto, user) {
+    async createPurchase(dto, user, product) {
         return this.prisma.purchase.create({
-            data: { ...dto, user_id: user.id }
+            data: {
+                amount: dto.amount,
+                quantity: dto.quantity,
+                user_id: user.id,
+                product_id: product.id
+            },
         });
     }
     async deletePurchase(id, user) {

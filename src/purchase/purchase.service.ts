@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { User } from '@prisma/client';
+import { Product, User } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePurchaseDto } from './dto/create.purchase.dto';
 
@@ -36,9 +36,15 @@ export class PurchaseService {
 
     }
 
-    async createPurchase(dto: CreatePurchaseDto, user: User){
+    async createPurchase(dto: CreatePurchaseDto, user: User, product: Product){
         return this.prisma.purchase.create({
-            data:{...dto, user_id: user.id}
+            data:{
+            amount: dto.amount,
+            quantity: dto.quantity,
+            user_id: user.id,
+            product_id: product.id
+            },
+            
         })
     }
 

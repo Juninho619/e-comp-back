@@ -1,6 +1,8 @@
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UpdateProductDto } from './dto/update.product.dto';
 import { CreateProductDto } from './dto/create.product.dto';
+import { BuyProductDto } from './dto/buy.product.dto';
+import { User } from '@prisma/client';
 export declare class ProductService {
     private prisma;
     constructor(prisma: PrismaService);
@@ -19,6 +21,7 @@ export declare class ProductService {
         stock: number;
         category: string;
     }>;
+    buyProduct(dto: BuyProductDto, user: User): Promise<void>;
     updateProduct(id: string, dto: UpdateProductDto): Promise<{
         product_brand: string;
         product_model: string;
