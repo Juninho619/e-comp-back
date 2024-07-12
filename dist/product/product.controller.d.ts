@@ -19,6 +19,14 @@ export declare class ProductController {
         stock: number;
         category: string;
     }>;
+    buyProduct(dto: CreateProductDto): Promise<{
+        id: string;
+        product_brand: string;
+        product_model: string;
+        price: number;
+        stock: number;
+        category: string;
+    }>;
     updateProduct(dto: UpdateProductDto, id: string): Promise<{
         product_brand: string;
         product_model: string;

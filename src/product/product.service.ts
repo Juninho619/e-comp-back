@@ -59,12 +59,20 @@ async buyProduct(dto: BuyProductDto, user: User){
   })
 
   // reduce stock
+  await this.prisma.product.update({
+    where:{
+      id: dto.productId,
+    },
+    data:{
+
+      }
+  })
 
   // reduce user wallet
   await this.prisma.user.update({
     where:{id: user.id},
     data:{
-      money: - 43
+      money: -1
     },
   })
 
