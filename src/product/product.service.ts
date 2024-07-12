@@ -1,9 +1,10 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UpdateProductDto } from './dto/update.product.dto';
 import { CreateProductDto } from './dto/create.product.dto';
 import { BuyProductDto } from './dto/buy.product.dto';
 import { User } from '@prisma/client';
+import { ForbiddenException } from '@nestjs/common';
 
 @Injectable()
 export class ProductService {
@@ -44,7 +45,7 @@ async buyProduct(dto: BuyProductDto, user: User){
   });
 
   // user enough money
-  if(user.money < merch.price){
+  if(buyer.money < merch.price){
     throw new ForbiddenException('User cannot buy this product')
   }
 
