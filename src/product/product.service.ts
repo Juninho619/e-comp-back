@@ -64,6 +64,7 @@ async buyProduct(dto: BuyProductDto, user: User){
       id: dto.productId,
     },
     data:{
+      stock: - dto.quantity
 
       }
   })
@@ -72,12 +73,10 @@ async buyProduct(dto: BuyProductDto, user: User){
   await this.prisma.user.update({
     where:{id: user.id},
     data:{
-      money: -1
+      money: - dto.amount
     },
   })
-
-  // return purchase overview
-
+  
 }
 
 async updateProduct(id: string, dto: UpdateProductDto){

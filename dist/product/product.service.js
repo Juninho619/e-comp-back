@@ -61,12 +61,14 @@ let ProductService = class ProductService {
             where: {
                 id: dto.productId,
             },
-            data: {}
+            data: {
+                stock: -dto.quantity
+            }
         });
         await this.prisma.user.update({
             where: { id: user.id },
             data: {
-                money: -1
+                money: -dto.amount
             },
         });
     }
