@@ -24,6 +24,20 @@ async getAllProducts(){
 })
 }
 
+async getProductById(id: string){
+  return this.prisma.product.findUnique({
+    where:{
+      id: id
+    }, select:{
+      product_brand: true,
+      product_model: true,
+      price: true,
+      stock: true,
+      category: true
+    }
+  })
+}
+
 async createProduct(dto: CreateProductDto){
   return this.prisma.product.create({
     data: { ...dto},
