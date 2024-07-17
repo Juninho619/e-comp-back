@@ -30,6 +30,19 @@ let ProductService = class ProductService {
             }
         });
     }
+    async getProductById(id) {
+        return this.prisma.product.findUnique({
+            where: {
+                id: id
+            }, select: {
+                product_brand: true,
+                product_model: true,
+                price: true,
+                stock: true,
+                category: true
+            }
+        });
+    }
     async createProduct(dto) {
         return this.prisma.product.create({
             data: { ...dto },

@@ -13,6 +13,13 @@ export declare class ProductService {
         stock: number;
         category: string;
     }[]>;
+    getProductById(id: string): Promise<{
+        product_brand: string;
+        product_model: string;
+        price: number;
+        stock: number;
+        category: string;
+    }>;
     createProduct(dto: CreateProductDto): Promise<{
         id: string;
         product_brand: string;

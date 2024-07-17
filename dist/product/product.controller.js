@@ -28,6 +28,9 @@ let ProductController = class ProductController {
     createProduct(dto) {
         return this.productService.createProduct(dto);
     }
+    getProductById(id) {
+        return this.productService.getProductById(id);
+    }
     buyProduct(dto) {
         return this.productService.createProduct(dto);
     }
@@ -53,6 +56,14 @@ __decorate([
     __metadata("design:paramtypes", [create_product_dto_1.CreateProductDto]),
     __metadata("design:returntype", void 0)
 ], ProductController.prototype, "createProduct", null);
+__decorate([
+    (0, common_1.UseGuards)(guards_1.JwtGuard),
+    (0, common_1.Get)(('/productbyid/:id')),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ProductController.prototype, "getProductById", null);
 __decorate([
     (0, common_1.UseGuards)(guards_1.JwtGuard),
     (0, common_1.Post)('/buy'),

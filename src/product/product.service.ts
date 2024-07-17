@@ -15,6 +15,7 @@ async getAllProducts(){
         orderBy:{
             price: 'desc',
       }, select:{
+        id: true,
         product_brand: true,
         product_model: true,
         price: true,
