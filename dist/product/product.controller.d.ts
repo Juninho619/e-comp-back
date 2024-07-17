@@ -5,6 +5,7 @@ export declare class ProductController {
     private readonly productService;
     constructor(productService: ProductService);
     getAllProducts(): Promise<{
+        id: string;
         product_brand: string;
         product_model: string;
         price: number;

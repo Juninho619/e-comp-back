@@ -7,6 +7,7 @@ export declare class ProductService {
     private prisma;
     constructor(prisma: PrismaService);
     getAllProducts(): Promise<{
+        id: string;
         product_brand: string;
         product_model: string;
         price: number;

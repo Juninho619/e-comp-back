@@ -20,7 +20,7 @@ export class ProductController {
   }
 
   @UseGuards(JwtGuard)
-  @Get(('/productbyid/:id'))
+  @Get('/productbyid/:id')
   getProductById(@Param('id') id: string){
     return this.productService.getProductById(id)
   }
