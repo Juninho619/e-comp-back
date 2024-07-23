@@ -58,7 +58,7 @@ __decorate([
 ], ProductController.prototype, "createProduct", null);
 __decorate([
     (0, common_1.UseGuards)(guards_1.JwtGuard),
-    (0, common_1.Get)(('/productbyid/:id')),
+    (0, common_1.Get)('/productbyid/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
